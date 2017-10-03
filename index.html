@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Viper Online Compiler</title>
+    <link rel="stylesheet" href="js/bootstrap-4-alpha6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/content.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" id="content">
+        <textarea class="form-control" id="viperSourceCode" rows="10"></textarea>
+        <div style="margin-top:15px;">
+          <button type="button" id="compileBtn" class="btn btn-secondary">Compile</button>
+        </div>
+      </div>
+      
+      <div class="row" id="result" style="margin-top:20px;">
+        Here goes the result.
+      </div>
+      
+      <div class="row" id="result2" style="margin-top:20px;">
+        Here goes another result.
+      </div>
+  </div>
+    
+      <script src="js/lib/tether.min.js"></script>
+      <script src="js/lib/jquery-3.2.1.min.js"></script>
+      <script src="js/lib/js.cookie-2.1.4.min.js"></script>
+      <script src="js/bootstrap-4-alpha6/js/bootstrap.min.js"></script>
+      <script src="js/api-1.0.0.js"></script>
+      
+      <script>
+      $(document).ready(function() {
+        API.init();
+        
+        $('#compileBtn').click(function() {
+          API.load();
+        })
+      });
+      </script>
+    
+    <footer>
+      
+    </footer>
+  </body>
+</html>
