@@ -29,6 +29,9 @@ var API = (function(API, $, undefined) {
     $('#result').empty();
     this.params['source'] = this.editor.getValue();
     
+    $('#bytecodeResult').html('<i class="fa fa-question-circle" aria-hidden="true"></i>')
+    $('#abiResult').html('<i class="fa fa-question-circle" aria-hidden="true"></i>')
+    
     $.ajax({
       url: API_URL + COMPILE_ENDPOINT,
       method: 'POST',
