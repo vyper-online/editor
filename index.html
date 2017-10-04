@@ -5,37 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Viper Online Compiler</title>
-    <link rel="stylesheet" href="js/bootstrap-4-alpha6/css/bootstrap.min.css">
+    <meta name="description" content="Online Compiler and Playground for the Ethereum Viper programming language.">
+    <link rel="stylesheet" href="js/bootstrap-4-beta/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/content.css">
   </head>
   <body>
-    <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Viper Online Compiler</a> <span class="badge badge-warning">Experimental</span>
+      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+    <li class="nav-item">
+      <a class="nav-link p-2" href="https://github.com/viper-online" target="_blank" rel="noopener" aria-label="GitHub">
+        <i class="fa fa-github" aria-hidden="true"></i>
+      </a>
+    </li>
+    </nav>
+    
+    
+    <div class="container" style="margin-top:20px;">
       <div class="row" id="content">
-        <textarea class="form-control" id="viperSourceCode" rows="10"></textarea>
-        <div style="margin-top:15px;">
-          <button type="button" id="compileBtn" class="btn btn-secondary">Compile</button>
+      
+        <div class="col-9 col-lg-10">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#editorTab" role="tab">Source Code</a> 
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#bytecodeTab" role="tab">
+                Bytecode <span id="bytecodeResult"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#abiTab" role="tab">
+                ABI <span id="abiResult"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="editorTab" role="tabpanel">
+              <div id="editor" style="margin-top:25px;"></div>
+            
+            </div>
+            <div class="tab-pane" id="bytecodeTab" role="tabpanel">
+              <div id="bytecode" class="wrap" style="margin-top:25px;"></div>
+            </div>
+            <div class="tab-pane" id="abiTab" role="tabpanel">
+              <div id="abi" style="margin-top:25px;"></div>
+            </div>
+          </div>
+          
+          
+          
+            
+        </div>
+        <div class="col">
+          <div style="margin-bottom:30px;">
+            <button type="button" id="compileBtn" class="btn btn-secondary">Compile</button>
+          </div>
+          <p>
+            Open in editor:
+          </p>
+          <dd style="list-style-type: none;" id="exampleList">
+            <li>
+              <a href="#" data-example="voting/ballot.v.py">Ballot</a>
+            </li>
+            <li>
+              <a href="#" data-example="crowdfund.v.py">Crowdfunding</a>
+            </li>
+            <li>
+              <a href="#" data-example="auctions/simple_open_auction.v.py">Simple Auction</a>
+            </li>
+            <li>
+              <a href="#" data-example="stock/company.v.py">Company</a>
+            </li>
+            <li>
+              <a href="#" data-example="wallet/wallet.v.py">Wallet</a>
+            </li>
+          </dd>
         </div>
       </div>
       
-      <div class="row" id="result" style="margin-top:20px;">
-        Here goes the result.
-      </div>
-      
-      <div class="row" id="result2" style="margin-top:20px;">
-        Here goes another result.
-      </div>
   </div>
     
       <script src="js/lib/tether.min.js"></script>
       <script src="js/lib/jquery-3.2.1.min.js"></script>
       <script src="js/lib/js.cookie-2.1.4.min.js"></script>
-      <script src="js/bootstrap-4-alpha6/js/bootstrap.min.js"></script>
+      <script src="js/bootstrap-4-beta/js/popper.min.js"></script>
+      <script src="js/bootstrap-4-beta/js/bootstrap.min.js"></script>
+      <script src="js/ace-127/ace.js"></script>
       <script src="js/api-1.0.0.js"></script>
       
       <script>
       $(document).ready(function() {
-        API.init();
+        API.init();   
+        
+        $('#exampleList a').click(function(e) {
+          API.loadExample($(this).data('example'), true);
+          e.preventDefault();
+        });
         
         $('#compileBtn').click(function() {
           API.load();
