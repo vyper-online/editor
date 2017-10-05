@@ -12,3 +12,9 @@
    white-space: -o-pre-wrap;   /* Opera 7 */    
    word-wrap: break-word;      /* IE */
 }
+
+.abi-box {
+  border: 1px solid #ddd;
+  background-color: #f2f2f2;
+  padding: 15px;
+}

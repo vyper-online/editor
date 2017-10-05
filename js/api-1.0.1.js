@@ -53,12 +53,15 @@ var API = (function(API, $, undefined) {
         }
         $('#bytecode').html(data.result.bytecode)
         
-        if (data.result.json_code === 200) {
+        if (data.result.json_code === 200 && data.result.abi_code === 200) {
           $('#abiResult').html('<i class="fa fa-check" aria-hidden="true"></i>')
         } else {
           $('#abiResult').html('<i class="fa fa-exclamation-circle" aria-hidden="true"></i>')
         }
-        $('#abi').html(data.result.json)
+        $('#abiCompact').html(data.result.json)
+        if (data.result.abi_code === 200) {
+          $('#abiReadable').html(JSON.stringify(data.result.abi, null, 4))
+        }
       },
       fail: function() {
         $('#result').html("Mah.")
