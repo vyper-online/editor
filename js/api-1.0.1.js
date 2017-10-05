@@ -19,9 +19,13 @@ var API = (function(API, $, undefined) {
     }
     
     if (confirmed) {
-      $.get( EXAMPLE_URL + example, function( data ) {
+      const reqURL = EXAMPLE_URL + example;
+      $.get(reqURL , function(data) {
         API.editor.setValue(data);
-      });
+      })
+      .fail(function(e) {
+        alert("Example from resource " + reqURL + " could not be loaded!");
+      })
     }
   }
   
