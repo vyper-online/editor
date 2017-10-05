@@ -33,6 +33,7 @@ var API = (function(API, $, undefined) {
   API.setCompileToUnknown = function() {
     $('#bytecodeResult').html('<i class="fa fa-question-circle" aria-hidden="true"></i>')
     $('#abiResult').html('<i class="fa fa-question-circle" aria-hidden="true"></i>')
+    $('#lllResult').html('<i class="fa fa-question-circle" aria-hidden="true"></i>')
   }
   
   API.load = function() {
@@ -65,6 +66,12 @@ var API = (function(API, $, undefined) {
         } else {
           $('#abiReadable').html(data.result.abi)
         }
+        if (data.result.lll_code === 200) {
+          $('#lllResult').html('<i class="fa fa-check" aria-hidden="true"></i>')
+        } else {
+          $('#lllResult').html('<i class="fa fa-exclamation-circle" aria-hidden="true"></i>')
+        }
+        $('#lll').html(data.result.lll)
       },
       fail: function() {
         $('#result').html("Mah.")
