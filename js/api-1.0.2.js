@@ -62,6 +62,8 @@ var API = (function(API, $, undefined) {
         $('#abiCompact').html(data.result.json)
         if (data.result.abi_code === 200) {
           $('#abiReadable').html(JSON.stringify(data.result.abi, null, 4))
+        } else {
+          $('#abiReadable').html(data.result.abi)
         }
       },
       fail: function() {
