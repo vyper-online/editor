@@ -22,6 +22,7 @@ var API = (function(API, $, undefined) {
       const reqURL = EXAMPLE_URL + example;
       $.get(reqURL , function(data) {
         API.editor.setValue(data);
+        API.editor.clearSelection();
       })
       .fail(function(e) {
         alert("Example from resource " + reqURL + " could not be loaded!");
@@ -78,6 +79,7 @@ var API = (function(API, $, undefined) {
     
     if (localStorage.getItem("currentDocument")) {
       this.editor.setValue(localStorage.getItem("currentDocument"));
+      this.editor.clearSelection();
     } else {
       API.loadExample('voting/ballot.v.py', false);
     }
