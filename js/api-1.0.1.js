@@ -29,12 +29,15 @@ var API = (function(API, $, undefined) {
     }
   }
   
+  API.setCompileToUnknown = function() {
+    $('#bytecodeResult').html('<i class="fa fa-question-circle" aria-hidden="true"></i>')
+    $('#abiResult').html('<i class="fa fa-question-circle" aria-hidden="true"></i>')
+  }
+  
   API.load = function() {
     $('#result').empty();
     this.params['source'] = this.editor.getValue();
-    
-    $('#bytecodeResult').html('<i class="fa fa-question-circle" aria-hidden="true"></i>')
-    $('#abiResult').html('<i class="fa fa-question-circle" aria-hidden="true"></i>')
+    this.setCompileToUnknown();
     
     $.ajax({
       url: API_URL + COMPILE_ENDPOINT,
@@ -78,11 +81,8 @@ var API = (function(API, $, undefined) {
     
     
     this.editor.getSession().on('change', function(e) {
-      if (true) {
-        localStorage.setItem("currentDocument", API.editor.getValue());
-        this.changeCounter = 0;
-      }
-      this.changeCounter += 1;
+      API.setCompileToUnknown();
+      localStorage.setItem("currentDocument", API.editor.getValue());
     });
   }
   
