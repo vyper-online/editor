@@ -71,7 +71,7 @@ var API = (function(API, $, undefined) {
         } else {
           $('#lllResult').html('<i class="fa fa-exclamation-circle" aria-hidden="true"></i>')
         }
-        $('#lll').html(data.result.lll)
+        $('#lll').text(data.result.lll)
       },
       fail: function() {
         $('#result').html("Mah.")
