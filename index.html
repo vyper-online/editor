@@ -8,7 +8,7 @@
     <meta name="description" content="Online Compiler and Playground for the Ethereum Viper programming language.">
     <link rel="stylesheet" href="js/bootstrap-4-beta/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome-4.7.0.min.css">
-    <link rel="stylesheet" href="css/content-1.0.0.css">
+    <link rel="stylesheet" href="css/content-1.0.1.css">
   </head>
   <body>
     
@@ -73,11 +73,11 @@
                 <p>
                   <span class="badge badge-info">Readable</span>
                 </p>
-                <pre id="abiReadable" class="abi-box"></pre>
+                <div id="abiReadable" style="margin-top:25px;"></div>
               </div>
             </div>
             <div class="tab-pane" id="lllTab" role="tabpanel">
-              <pre id="lll" class="wrap abi-box" style="margin-top:25px;"></pre>
+              <div id="lll" style="margin-top:25px;"></div>
             </div>
           </div>
           
@@ -120,11 +120,16 @@
       <script src="js/bootstrap-4-beta/js/popper.min.js"></script>
       <script src="js/bootstrap-4-beta/js/bootstrap.min.js"></script>
       <script src="js/ace-127/ace.js"></script>
-      <script src="js/api-1.0.4.js"></script>
+      <script src="js/api-1.0.5.js"></script>
       
       <script>
       $(document).ready(function() {
         API.init();   
+        
+        $('#myTab').on('shown.bs.tab', function(e) {
+          API.abiEditor.resize()
+          API.lllEditor.resize()
+        });
         
         $('#exampleList a').click(function(e) {
           API.loadExample($(this).data('example'), true);

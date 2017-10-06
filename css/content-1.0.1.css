@@ -1,6 +1,6 @@
 
 
-#editor {
+#editor, #abiReadable, #lll {
   border: 1px solid #ddd;
   height:800px;
 }
