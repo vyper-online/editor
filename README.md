@@ -1,4 +1,4 @@
 # editor
 
-Online compiler for the Ethereum [viper](https://github.com/ethereum/viper) 
+Online compiler for the Ethereum [vyper](https://github.com/ethereum/vyper) 
 programming language.
