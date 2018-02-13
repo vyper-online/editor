@@ -1,6 +1,6 @@
-const API_URL =  'https://api.viper.tools/'
+const API_URL =  'https://api.vyper.online/'
 const COMPILE_ENDPOINT = 'compile/'
-const EXAMPLE_URL = 'https://raw.githubusercontent.com/ethereum/viper/master/examples/'
+const EXAMPLE_URL = 'https://raw.githubusercontent.com/ethereum/vyper/master/examples/'
 
 
 var API = (function(API, $, undefined) {
