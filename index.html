@@ -1,181 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head> 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Vyper Online Compiler</title>
-    <meta name="description" content="Online Compiler and Playground for the Ethereum Vyper programming language.">
-    <link rel="stylesheet" href="js/bootstrap-4-beta/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome-4.7.0.min.css">
-    <link rel="stylesheet" href="css/content-1.0.1.css">
-  </head>
-  <body>
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Vyper Online Compiler</a> <span class="badge badge-warning">Experimental</span>
-      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-        <li class="nav-item">
-          <a class="nav-link p-2" href="https://vyper.readthedocs.io" target="_blank" rel="noopener" aria-label="Vyper Docs">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Vyper Online Compiler</title>
+  <meta name="description" content="Online Compiler and Playground for the Ethereum Vyper programming language.">
+  <link rel="stylesheet" href="js/bootstrap-4-beta/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome-4.7.0.min.css">
+  <link rel="stylesheet" href="css/content-1.0.3.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Vyper Online Compiler</a> <span class="badge badge-warning">Experimental</span>
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+      <li class="nav-item">
+        <a class="nav-link p-2" href="https://vyper.readthedocs.io" target="_blank" rel="noopener" aria-label="Vyper Docs">
             Docs
           </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link p-2" href="https://github.com/vyper-online" target="_blank" rel="noopener" aria-label="GitHub">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link p-2" href="https://github.com/vyper-online" target="_blank" rel="noopener" aria-label="GitHub">
             <i class="fa fa-github" aria-hidden="true"></i>
           </a>
-        </li>
-      </ul>
-    </nav>
-    
-    
-    <div class="container" style="margin-top:20px;">
-      
-      <div class="row">
+      </li>
+    </ul>
+  </nav>
+
+
+  <div class="container" style="margin-top:20px;">
+
+    <div class="row">
       <input type="text" id="filename" value="my_file">
-        <div class="col text-right" style="margin-bottom:5px;">
-          <div class="dropdown" style="display:inline-block;margin-right:15px;margin-top:10px;">
-            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="col text-right" style="margin-bottom:5px;">
+        <div class="dropdown" style="display:inline-block;margin-right:15px;margin-top:10px;">
+          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Open in editor
             </button>
-            <div class="dropdown-menu" id="exampleDropdown" aria-labelledby="dropdownMenuButton">
-              <a href="#" class="dropdown-item" data-example="auctions/simple_open_auction.v.py">Simple Open Auction</a>
-              <a href="#" class="dropdown-item" data-example="market_maker/on_chain_market_maker.v.py">On Chain Market Maker</a>
-              <a href="#" class="dropdown-item" data-example="safe_remote_purchase/safe_remote_purchase.v.py">Safe Remote Purchase</a>
-              <a href="#" class="dropdown-item" data-example="tokens/ERC20.v.py">ERC20 Token</a>
-              <a href="#" class="dropdown-item" data-example="tokens/ERC20_solidity_compatible/ERC20.v.py">ERC20 Token (Solidity-Compatible)</a>
-              <a href="#" class="dropdown-item" data-example="tokens/vypercoin.v.py">VyperCoin :-)</a>
-              <a href="#" class="dropdown-item" data-example="stock/company.v.py">Company Stock</a>
-              <a href="#" class="dropdown-item" data-example="voting/ballot.v.py">Voting</a>
-              <a href="#" class="dropdown-item" data-example="wallet/wallet.v.py">Wallet</a>
-              <a href="#" class="dropdown-item" data-example="crowdfund.v.py">Crowdfunding</a>
-            </div>
-          </div> 
-          <button type="button" id="compileBtn" class="btn btn-secondary" style="margin-top:10px;">Compile</button>
-           <button type="button" id="saveBtn" class="btn btn-secondary" style="margin-top:10px;">Save</button>
+          <div class="dropdown-menu" id="exampleDropdown" aria-labelledby="dropdownMenuButton">
+            <a href="#" class="dropdown-item" data-example="auctions/simple_open_auction.v.py">Simple Open Auction</a>
+            <a href="#" class="dropdown-item" data-example="market_maker/on_chain_market_maker.v.py">On Chain Market Maker</a>
+            <a href="#" class="dropdown-item" data-example="safe_remote_purchase/safe_remote_purchase.v.py">Safe Remote Purchase</a>
+            <a href="#" class="dropdown-item" data-example="tokens/ERC20.v.py">ERC20 Token</a>
+            <a href="#" class="dropdown-item" data-example="tokens/ERC20_solidity_compatible/ERC20.v.py">ERC20 Token (Solidity-Compatible)</a>
+            <a href="#" class="dropdown-item" data-example="tokens/vypercoin.v.py">VyperCoin :-)</a>
+            <a href="#" class="dropdown-item" data-example="stock/company.v.py">Company Stock</a>
+            <a href="#" class="dropdown-item" data-example="voting/ballot.v.py">Voting</a>
+            <a href="#" class="dropdown-item" data-example="wallet/wallet.v.py">Wallet</a>
+            <a href="#" class="dropdown-item" data-example="crowdfund.v.py">Crowdfunding</a>
+          </div>
         </div>
+        <button type="button" id="compileBtn" class="btn btn-secondary" style="margin-top:10px;">Compile</button>
+        <button type="button" id="saveBtn" class="btn btn-secondary" style="margin-top:10px;">Save</button>
+        <input type="file" name="file" id="file" class="inputfile" onchange="loadFile(this)" />
+        <label for="file" id="loadBtn" class="btn btn-secondary" style="margin-top:18px;">Load</label>
       </div>
-      
-      <div class="row" id="content">
-      
-        <div class="col">
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#editorTab" role="tab">Source Code</a> 
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#bytecodeTab" role="tab">
+    </div>
+
+    <div class="row" id="content">
+
+      <div class="col">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#editorTab" role="tab">Source Code</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#bytecodeTab" role="tab">
                 Bytecode <span id="bytecodeResult"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#abiTab" role="tab">
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#abiTab" role="tab">
                 ABI <span id="abiResult"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#lllTab" role="tab">
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#lllTab" role="tab">
                 LLL <span id="lllResult"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
               </a>
-            </li>
-          </ul>
-          
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane active" id="editorTab" role="tabpanel">
-              <div id="editor" style="margin-top:25px;"></div>
-            </div>
-            <div class="tab-pane" id="bytecodeTab" role="tabpanel">
-              <div id="bytecode" class="wrap abi-box" style="margin-top:25px;"></div>
-            </div>
-            <div class="tab-pane" id="abiTab" role="tabpanel">
-              <div id="abi" style="margin-top:25px;">
-                <p>
-                  <span class="badge badge-info">Compact</span>
-                </p>
-                <div id="abiCompact" class="abi-box"></div>
-                <p>
-                  <span class="badge badge-info">Readable</span>
-                </p>
-                <div id="abiReadable" style="margin-top:25px;"></div>
-              </div>
-            </div>
-            <div class="tab-pane" id="lllTab" role="tabpanel">
-              <div id="lll" style="margin-top:25px;"></div>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="editorTab" role="tabpanel">
+            <div id="editor" style="margin-top:25px;"></div>
+          </div>
+          <div class="tab-pane" id="bytecodeTab" role="tabpanel">
+            <div id="bytecode" class="wrap abi-box" style="margin-top:25px;"></div>
+          </div>
+          <div class="tab-pane" id="abiTab" role="tabpanel">
+            <div id="abi" style="margin-top:25px;">
+              <p>
+                <span class="badge badge-info">Compact</span>
+              </p>
+              <div id="abiCompact" class="abi-box"></div>
+              <p>
+                <span class="badge badge-info">Readable</span>
+              </p>
+              <div id="abiReadable" style="margin-top:25px;"></div>
             </div>
           </div>
-          
+          <div class="tab-pane" id="lllTab" role="tabpanel">
+            <div id="lll" style="margin-top:25px;"></div>
+          </div>
         </div>
+
       </div>
-      
+    </div>
+
   </div>
-    
-      <script src="js/lib/tether.min.js"></script>
-      <script src="js/lib/jquery-3.2.1.min.js"></script>
-      <script src="js/lib/js.cookie-2.1.4.min.js"></script>
-      <script src="js/bootstrap-4-beta/js/popper.min.js"></script>
-      <script src="js/bootstrap-4-beta/js/bootstrap.min.js"></script>
-      <script src="js/ace-127/ace.js"></script>
-      <script src="js/api-1.0.6.js"></script>
-      
-      <script>
-      $(document).ready(function() {
-        API.init();   
-        
-        $('#myTab').on('shown.bs.tab', function(e) {
-          API.abiEditor.resize()
-          API.lllEditor.resize()
-        });
-        
-        $('#exampleDropdown a').click(function(e) {
-          API.loadExample($(this).data('example'), true);
-          e.preventDefault();
-        });
-        
-        $('#compileBtn').click(function() {
-          API.load();
-        });
-        
-        $('#saveBtn').click(function() {
-          download($("#filename").val() + ".vy", ace.edit("editor").getValue())
-        });
+
+  <script>
+    if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+    }
+  </script>
+  <script src="js/lib/tether.min.js"></script>
+  <script src="js/lib/jquery-3.2.1.min.js"></script>
+  <script src="js/lib/js.cookie-2.1.4.min.js"></script>
+  <script src="js/bootstrap-4-beta/js/popper.min.js"></script>
+  <script src="js/bootstrap-4-beta/js/bootstrap.min.js"></script>
+  <script src="js/ace-127/ace.js"></script>
+  <script src="js/api-1.0.6.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      API.init();
+
+      $('#myTab').on('shown.bs.tab', function(e)  {
+        API.abiEditor.resize()
+        API.lllEditor.resize()
       });
-      
-      
-      /* 
-      New code
-      */
-      function download(filename, text) {
-        var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', filename);
 
-        element.style.display = 'none';
-        document.body.appendChild(element);
+      $('#exampleDropdown a').click(function(e) {
+        API.loadExample($(this).data('example'), true);
+        e.preventDefault();
+      });
 
-        element.click();
+      $('#compileBtn').click(function() {
+        API.load();
+      });
 
-        document.body.removeChild(element);
+      $('#saveBtn').click(function() {
+        download($("#filename").val() + ".vy", ace.edit("editor").getValue())
+      });
+    });
+
+
+    /* 
+      Save Button
+    */
+    function download(filename, text) {
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
+    }
+
+    /* 
+     * Load Button
+     */
+
+    function loadFile(filePath) {
+      if (readText(filePath)) {
+        console.log(filePath)
+      } else {
+        console.log(filePath + "Error")
       }
-      </script>
-      
-      <!-- Google Analytics -->
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-107539000-1']);
-      _gaq.push(['_trackPageview']);
+    }
 
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();    
-    </script>
+    function readText(filePath) {
+      if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+        alert('The File APIs are not fully supported by your browser. Fallback required.');
+        return false;
+      }
+      var reader = new FileReader();
+      var output = ""; //placeholder for text output
+      if (filePath.files && filePath.files[0]) {
+        reader.onload = function(e) {
 
-    
-    <footer>
-      
-    </footer>
-  </body>
+          output = e.target.result;
+          displayContents(filePath.files[0].name, output);
+        }; //end onload()
+        reader.readAsText(filePath.files[0]);
+      } //end if html5 filelist support
+      else if (ActiveXObject && filePath) {
+        try {
+          reader = new ActiveXObject("Scripting.FileSystemObject");
+          var file = reader.OpenTextFile(filePath, 1); //ActiveX File Object
+          output = file.ReadAll(); //text contents of file
+          file.Close(); //close file "input stream"
+          displayContents(filePath.files[0].name, output);
+        } catch (e) {
+          if (e.number == -2146827859) {
+            alert('Unable to access local files due to browser security settings. ' +
+              'To overcome this, go to Tools->Internet Options->Security->Custom Level. ' +
+              'Find the setting for "Initialize and script ActiveX controls not marked as safe" and change it to "Enable" or "Prompt"');
+          }
+        }
+      } else {
+        return false;
+      }
+      return true;
+    }
+
+
+    function displayContents(filename, data) {
+      filename = filename.replace(".vy", "");
+      filename = filename.replace(".v.py", "");
+      $("#filename").val(filename);
+      API.editor.setValue(data);
+      API.editor.clearSelection();
+    }
+  </script>
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-107539000-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <script>
+    if (window.module) module = window.module;
+  </script>
+
+  <footer>
+
+  </footer>
+</body>
+
 </html>
