@@ -90,7 +90,11 @@ var API = (function(API, $, undefined) {
     
     this.editor = ace.edit("editor");
     this.editor.setTheme("ace/theme/crimson_editor");
-    this.editor.getSession().setMode("ace/mode/python"); 
+    this.editor.getSession().setMode("ace/mode/vyper"); 
+    this.editor.setOptions({
+      //minLines: 100,
+      //maxLines: Infinity
+    });
     
     this.abiEditor = ace.edit("abiReadable");
     this.abiEditor.setTheme("ace/theme/crimson_editor");

@@ -1,6 +1,11 @@
+html {
+   height: 100%;
+}
+body {
+   min-height: 100%;
+}
 
-
-#editor, #abiReadable, #lll {
+#abiReadable, #lll {
   border: 1px solid #ddd;
   height:800px;
 }
@@ -21,7 +26,7 @@
 }
 
 #editorTab {
-   margin-bottom: 40px;
+   margin-bottom: 0px;
 }
 
 #filename {
@@ -44,5 +49,13 @@
 .inputfile + label {
    display: inline-block;
    cursor: pointer; /* "hand" cursor */
+}
+
+.container {
+   max-width: none !important;
+}
+
+.col {
+   padding-left: 0px;
 }
 

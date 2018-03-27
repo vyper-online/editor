@@ -9,7 +9,7 @@
   <meta name="description" content="Online Compiler and Playground for the Ethereum Vyper programming language.">
   <link rel="stylesheet" href="js/bootstrap-4-beta/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/font-awesome-4.7.0.min.css">
-  <link rel="stylesheet" href="css/content-1.0.3.css">
+  <link rel="stylesheet" href="css/content-1.0.4.css">
   <!-- Set Favicon -->
   <link rel="shortcut icon" type="image/png" href="icons/favicon.ico" />
 </head>
@@ -86,7 +86,6 @@
               </a>
           </li>
         </ul>
-
         <!-- Tab panes -->
         <div class="tab-content">
           <div class="tab-pane active" id="editorTab" role="tabpanel">
@@ -129,13 +128,15 @@
   <script src="js/bootstrap-4-beta/js/popper.min.js"></script>
   <script src="js/bootstrap-4-beta/js/bootstrap.min.js"></script>
   <script src="js/ace-127/ace.js"></script>
-  <script src="js/api-1.0.6.js"></script>
+  <script src="js/api-1.0.7.js"></script>
 
   <script>
     $(document).ready(function() {
       API.init();
-
+      $('#editor').height($('body').height() - $("#editor").offset().top);
+      
       $('#myTab').on('shown.bs.tab', function(e)  {
+        API.editor.resize()
         API.abiEditor.resize()
         API.lllEditor.resize()
       });
@@ -153,7 +154,10 @@
         download($("#filename").val() + ".vy", ace.edit("editor").getValue())
       });
     });
-
+    
+    $(window).on('resize', function(){
+      $('#editor').height($('body').height() - $("#editor").offset().top);
+    });
 
     /* 
       Save Button
