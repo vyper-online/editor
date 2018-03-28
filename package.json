@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BenKaufman10/editor.git"
+    "url": "git+https://github.com/vyper-online/editor.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BenKaufman10/editor/issues"
+    "url": "https://github.com/vyper-online/editor/issues"
   },
-  "homepage": "https://github.com/BenKaufman10/editor#readme"
+  "homepage": "https://github.com/vyper-online/editor#readme"
 }
