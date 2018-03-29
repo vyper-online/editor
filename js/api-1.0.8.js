@@ -90,7 +90,7 @@ var API = (function(API, $, undefined) {
     
     this.editor = ace.edit("editor");
     this.editor.setTheme("ace/theme/crimson_editor");
-    this.editor.getSession().setMode("ace/mode/python"); 
+    this.editor.getSession().setMode("ace/mode/vyper"); 
     
     this.abiEditor = ace.edit("abiReadable");
     this.abiEditor.setTheme("ace/theme/crimson_editor");
