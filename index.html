@@ -52,11 +52,12 @@
               <a href="#" class="dropdown-item" data-example="wallet/wallet.v.py">Wallet</a>
               <a href="#" class="dropdown-item" data-example="crowdfund.v.py">Crowdfunding</a>
             </div>
-          </div> 
-          <button type="button" id="compileBtn" class="btn btn-secondary" style="margin-top:10px;">Compile</button>
-          <button type="button" id="saveBtn" class="btn btn-secondary" style="margin-top:10px;">Save</button>
-          <input type="file" name="file" id="file" class="inputfile" onchange="loadFile(this.files[0])" />
-          <label for="file" id="loadBtn" class="btn btn-secondary" style="margin-top:18px;">Load</label>
+          </div>
+          
+            <button type="button" id="compileBtn" class="btn btn-secondary">Compile</button>
+            <button type="button" id="saveBtn" class="btn btn-secondary">Save</button>
+            <input type="file" name="file" id="file" class="inputfile" onchange="loadFile(this.files[0])" />
+            <label for="file" id="loadBtn" class="btn btn-secondary">Load</label>
         </div>
       </div>
       
@@ -121,7 +122,7 @@
       <script src="js/bootstrap-4-beta/js/popper.min.js"></script>
       <script src="js/bootstrap-4-beta/js/bootstrap.min.js"></script>
       <script src="js/ace-127/ace.js"></script>
-      <script src="js/api-1.0.6.js"></script>
+      <script src="js/api-1.0.7.js"></script>
       
       <script>
       $(document).ready(function() {
@@ -134,6 +135,7 @@
         
         $('#exampleDropdown a').click(function(e) {
           API.loadExample($(this).data('example'), true);
+          $("#filename").val("my_file");
           e.preventDefault();
         });
         
@@ -146,10 +148,6 @@
         });
       });
       
-      
-      /* 
-      New code
-      */
       function download(filename, text) {
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -163,47 +161,6 @@
         document.body.removeChild(element);
       }
       
-      /* 
-       * Load Button
-       */
-
-      function loadFile(filename) {
-        console.log(filename);
-        if (!confirm("Current editor contents will be lost! Continue?")) {
-          return;
-        }
-        console.log(filename + "2");
-        if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
-          alert('The File APIs are not fully supported by your browser. Fallback required.');
-          return;
-        }
-        
-        var reader = new FileReader();
-        var output = "";
-        reader.onload = function(e) {
-          output = e.target.result;
-          displayContents(filename.name, output);
-        };
-        reader.readAsText(filename);
-      }
-
-      function loadFileDropped(ev) {
-        ev.preventDefault();
-        if (ev.dataTransfer.items) {
-          loadFile(ev.dataTransfer.items[0].getAsFile());
-        } else {
-          loadFile(ev.dataTransfer.files[0]);
-        }
-      }
-
-      function displayContents(filename, data) {
-        filename = filename.replace(".vy", "");
-        filename = filename.replace(".v.py", "");
-        $("#filename").val(filename);
-        API.editor.setValue(data);
-        API.editor.clearSelection();
-      }
-
       window.addEventListener("dragover", function(e) {
         e = e || event;
         e.preventDefault();
