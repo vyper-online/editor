@@ -29,5 +29,37 @@
    height: 100%;
    padding: 5px;
    margin-left: 15px;
+   margin-top: 10px;
+   margin-bottom: 10px;
    font-size: 20px;
+}
+
+#compileBtn, #saveBtn, #loadBtn {
+   margin-top: 5px;
+}
+
+#loadBtn {
+   margin-bottom: 0px;
+}
+
+@media (max-width: 525px) { 
+   #filename {
+      width: 100%;
+      margin-left: 5px;
+      margin-right: 5px;
+   }
+}
+
+.inputfile {
+   width: 0.1px;
+   height: 0.1px;
+   opacity: 0;
+   overflow: hidden;
+   position: absolute;
+   z-index: -1;
+}
+
+.inputfile + label {
+   display: inline-block;
+   cursor: pointer; /* "hand" cursor */
 }

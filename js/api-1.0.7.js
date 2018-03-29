@@ -119,3 +119,42 @@ var API = (function(API, $, undefined) {
   return API;
 
 }(API || {}, jQuery));
+
+/* Load File Functionality */
+
+function loadFile(filename) {
+  console.log(filename);
+  if (!confirm("Current editor contents will be lost! Continue?")) {
+    return;
+  }
+  console.log(filename + "2");
+  if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+    alert('The File APIs are not fully supported by your browser. Fallback required.');
+    return;
+  }
+  
+  var reader = new FileReader();
+  var output = "";
+  reader.onload = function(e) {
+    output = e.target.result;
+    displayContents(filename.name, output);
+  };
+  reader.readAsText(filename);
+}
+
+function loadFileDropped(ev) {
+  ev.preventDefault();
+  if (ev.dataTransfer.items) {
+    loadFile(ev.dataTransfer.items[0].getAsFile());
+  } else {
+    loadFile(ev.dataTransfer.files[0]);
+  }
+}
+
+function displayContents(filename, data) {
+  filename = filename.replace(".vy", "");
+  filename = filename.replace(".v.py", "");
+  $("#filename").val(filename);
+  API.editor.setValue(data);
+  API.editor.clearSelection();
+}
