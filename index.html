@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/font-awesome-4.7.0.min.css">
     <link rel="stylesheet" href="css/content-1.0.3.css">
     <!-- Set Favicon -->
-    <link rel="shortcut icon" type="image/png" href="icons/favicon.ico"/>
+    <link rel="shortcut icon" type="image/png" href="icons/favicon.ico" />
   </head>
   <body>
     
@@ -55,7 +55,7 @@
           </div> 
           <button type="button" id="compileBtn" class="btn btn-secondary" style="margin-top:10px;">Compile</button>
           <button type="button" id="saveBtn" class="btn btn-secondary" style="margin-top:10px;">Save</button>
-          <input type="file" name="file" id="file" class="inputfile" onchange="loadFile(this)" />
+          <input type="file" name="file" id="file" class="inputfile" onchange="loadFile(this.files[0])" />
           <label for="file" id="loadBtn" class="btn btn-secondary" style="margin-top:18px;">Load</label>
         </div>
       </div>
@@ -88,7 +88,7 @@
           <!-- Tab panes -->
           <div class="tab-content">
             <div class="tab-pane active" id="editorTab" role="tabpanel">
-              <div id="editor" style="margin-top:25px;"></div>
+              <div id="editor" ondrop="loadFileDropped(event);" style="margin-top:25px;"></div>
             </div>
             <div class="tab-pane" id="bytecodeTab" role="tabpanel">
               <div id="bytecode" class="wrap abi-box" style="margin-top:25px;"></div>
@@ -167,49 +167,34 @@
        * Load Button
        */
 
-      function loadFile(filePath) {
-        if (readText(filePath)) {
-          console.log(filePath)
-        } else {
-          console.log(filePath + "Error")
+      function loadFile(filename) {
+        console.log(filename);
+        if (!confirm("Current editor contents will be lost! Continue?")) {
+          return;
         }
-      }
-
-      function readText(filePath) {
+        console.log(filename + "2");
         if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
           alert('The File APIs are not fully supported by your browser. Fallback required.');
-          return false;
+          return;
         }
+        
         var reader = new FileReader();
-        var output = ""; //placeholder for text output
-        if (filePath.files && filePath.files[0]) {
-          reader.onload = function(e) {
-
-            output = e.target.result;
-            displayContents(filePath.files[0].name, output);
-          }; //end onload()
-          reader.readAsText(filePath.files[0]);
-        } //end if html5 filelist support
-        else if (ActiveXObject && filePath) {
-          try {
-            reader = new ActiveXObject("Scripting.FileSystemObject");
-            var file = reader.OpenTextFile(filePath, 1); //ActiveX File Object
-            output = file.ReadAll(); //text contents of file
-            file.Close(); //close file "input stream"
-            displayContents(filePath.files[0].name, output);
-          } catch (e) {
-            if (e.number == -2146827859) {
-              alert('Unable to access local files due to browser security settings. ' +
-                'To overcome this, go to Tools->Internet Options->Security->Custom Level. ' +
-                'Find the setting for "Initialize and script ActiveX controls not marked as safe" and change it to "Enable" or "Prompt"');
-            }
-          }
-        } else {
-          return false;
-        }
-        return true;
+        var output = "";
+        reader.onload = function(e) {
+          output = e.target.result;
+          displayContents(filename.name, output);
+        };
+        reader.readAsText(filename);
       }
 
+      function loadFileDropped(ev) {
+        ev.preventDefault();
+        if (ev.dataTransfer.items) {
+          loadFile(ev.dataTransfer.items[0].getAsFile());
+        } else {
+          loadFile(ev.dataTransfer.files[0]);
+        }
+      }
 
       function displayContents(filename, data) {
         filename = filename.replace(".vy", "");
@@ -218,6 +203,15 @@
         API.editor.setValue(data);
         API.editor.clearSelection();
       }
+
+      window.addEventListener("dragover", function(e) {
+        e = e || event;
+        e.preventDefault();
+      }, false);
+      window.addEventListener("drop", function(e) {
+        e = e || event;
+        e.preventDefault();
+      }, false);
     </script>
       
       <!-- Google Analytics -->
