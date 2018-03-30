@@ -115,7 +115,13 @@
       </div>
       
   </div>
-    
+  
+      <script>
+        if (typeof module === 'object') {
+          window.module = module;
+          module = undefined;
+        }
+      </script>
       <script src="js/lib/tether.min.js"></script>
       <script src="js/lib/jquery-3.2.1.min.js"></script>
       <script src="js/lib/js.cookie-2.1.4.min.js"></script>
@@ -190,6 +196,9 @@
       })();    
     </script>
 
+    <script>
+      if (window.module) module = window.module;
+    </script>
     
     <footer>
       
