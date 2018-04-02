@@ -45,7 +45,7 @@ var VyperHighlightRules = function() {
 	);
 
 	var builtinConstants = (
-		"true|false|None|NotImplemented|Ellipsis|ERC20|ether|wei|finney|" +
+		"true|false|True|False|None|NotImplemented|Ellipsis|ERC20|ether|wei|finney|" +
 		"szabo|shannon|lovelace|ada|babbage|gwei|kwei|mwei|twei|pwei"
 	);
 
@@ -61,7 +61,7 @@ var VyperHighlightRules = function() {
 
 	//var futureReserved = "";
 	var keywordMapper = this.createKeywordMapper({
-		"invalid.deprecated": "internal|__log__|num|num256",
+		"invalid.deprecated": "internal|__log__|num|num256|while",
 		"support.function": builtinFunctions,
 		"variable.language": "self|cls|msg|block",
 		"constant.language": builtinConstants,
