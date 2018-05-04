@@ -21,7 +21,12 @@ var API = (function(API, $, undefined) {
     }
     
     if (confirmed) {
-      const reqURL = EXAMPLE_URL + example;
+      let reqURL
+      if (example.substr(0, 4) === 'http') {
+        reqURL = example;
+      } else {
+        reqURL = EXAMPLE_URL + example;
+      }
       $.get(reqURL , function(data) {
         API.editor.setValue(data);
         API.editor.clearSelection();
