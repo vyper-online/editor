@@ -111,7 +111,7 @@ var API = (function(API, $, undefined) {
       this.editor.setValue(localStorage.getItem("currentDocument"));
       this.editor.clearSelection();
     } else {
-      API.loadExample('voting/ballot.v.py', false);
+      API.loadExample('voting/ballot.vy', false);
     }
     
     
