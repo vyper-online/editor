@@ -8,7 +8,7 @@
     <meta name="description" content="Online Compiler and Playground for the Ethereum Vyper programming language.">
     <link rel="stylesheet" href="js/bootstrap-4-beta/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome-4.7.0.min.css">
-    <link rel="stylesheet" href="css/content-1.0.3.css">
+    <link rel="stylesheet" href="css/content-1.0.4.css">
     <!-- Set Favicon -->
     <link rel="shortcut icon" type="image/png" href="icons/favicon.ico" />
   </head>
@@ -92,7 +92,7 @@
           <!-- Tab panes -->
           <div class="tab-content">
             <div class="tab-pane active" id="editorTab" role="tabpanel">
-              <div id="editor" ondrop="loadFileDropped(event);" style="margin-top:25px;"></div>
+              <div id="editor" ondrop="loadFileDropped(event);"></div>
             </div>
             <div class="tab-pane" id="bytecodeTab" role="tabpanel">
               <div id="bytecode" class="wrap abi-box" style="margin-top:25px;"></div>
@@ -118,7 +118,13 @@
       </div>
       
   </div>
-    
+  
+      <script>
+        if (typeof module === 'object') {
+          window.module = module;
+          module = undefined;
+        }
+      </script>
       <script src="js/lib/tether.min.js"></script>
       <script src="js/lib/jquery-3.2.1.min.js"></script>
       <script src="js/lib/js.cookie-2.1.4.min.js"></script>
@@ -130,6 +136,8 @@
       <script>
       $(document).ready(function() {
         API.init();   
+        
+        $('#editor').height($(window).height() - $("#editor").offset().top - 3);
         
         $('#myTab').on('shown.bs.tab', function(e) {
           API.abiEditor.resize()
@@ -149,6 +157,10 @@
         $('#saveBtn').click(function() {
           download($("#filename").val() + ".vy", ace.edit("editor").getValue())
         });
+      });
+      
+      $(window).on('resize', function(){
+          $('#editor').height($(window).height() - $("#editor").offset().top - 3);
       });
       
       function download(filename, text) {
@@ -187,6 +199,9 @@
       })();    
     </script>
 
+    <script>
+      if (window.module) module = window.module;
+    </script>
     
     <footer>
       
